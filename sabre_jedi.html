@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Neon Example CSS - By Rodrigo Portillo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<!--Example created by Rodrigo Portillo - 2017 https://velhobit.com.br-->
+<body>
+	<center>Click on Saber Handle - Created by <a href="https://velhobit.com.br">https://velhobit.com.br</a></center>
+	<div class="area_neon">
+		<center>
+			<h1 id="box_neon" class="neon"></h1>
+			<img src="assets/handle.png" id="saberHandle" class="handle"/>
+		</center>
+	</div>
+	<div class="sounds">
+		<audio controls="false" id="soundOn">
+			<source src="assets/saberOn.wav"/>
+		</audio>
+		<audio controls="false" id="soundOff">
+			<source src="assets/saberOff.wav"/>
+		</audio>
+		<audio controls="false" id="soundIn" loop>
+			<source src="assets/hum.wav"/>
+		</audio>
+	</div>
+	<style>
+		body{
+			font-family: Helvetica, Arial, sans-serif;
+			background-color: #0F0F0F;
+			color: white;
+		}
+		a{
+			color: #00F3FF;
+		}
+		button{
+			border-radius: 5px;
+			border: 1px solid white;
+			padding: 5px 10px;
+			background-color: transparent;
+			text-align: center;
+			margin-right: 2px;
+			color: white;
+			cursor: pointer;
+		}
+		button:focus{
+			outline: none;
+		}
+		
+		.area_neon{
+			padding: 20px;
+		}
+		
+		.area_neon h1.neon{
+			display: block;
+			min-height: 450px; 
+			margin: 0 auto;
+			margin: 0;
+			width: 17px;
+			background-color: white;
+			border-radius: 20px 20px 0 0 ;
+			
+			border: 3px solid #00FF6C;
+			box-shadow: 0 0 5px #00FF6C, 0 0 200px #00FF6C;
+			filter: blur(1px);
+			transition: all ease-in-out .3s;
+			
+			transform: scaleY(0);
+			transform-origin: bottom center;
+		}
+		
+		.area_neon h1.neon.on{
+			transform: scaleY(1);
+			
+			animation-name: lightAnim;
+    		animation-duration: 1s;
+    		animation-iteration-count: infinite;
+			animation-direction: alternate;
+		}
+		
+		.handle{
+			margin: 0 auto;
+			height: auto;
+			width: 30px;
+			margin-top: -20px;
+			position: relative;
+			z-index: 10;
+			
+			cursor: pointer;
+		}
+		
+		.sounds{
+			display: none;
+		}
+		
+		@keyframes lightAnim{
+			from{
+				box-shadow: 0 0 5px #00FF6C, 0 0 200px #00FF6C;
+			}
+			to{
+				box-shadow: 0 0 2px #00FF6C, 0 0 190px #00FF6C;
+			}
+		}
+		
+		@media only screen and (min-device-width: 320px) and (max-device-width: 640px) and (-webkit-min-device-pixel-ratio: 1),
+screen and (max-width: 600px) {
+			.area_neon h1.neon{
+				font-size: 3em;
+			}
+		}
+	</style>
+	
+	<script>
+		function turnOn(){
+			var sabre = document.getElementById("box_neon");
+			sabre.className = "neon on";
+			
+			var myB = document.getElementById("saberHandle");
+			myB.removeEventListener("click",turnOn);
+			myB.addEventListener("click",turnOff);
+			
+			var sound = document.getElementById("soundOn");
+			sound.play();
+			
+			setTimeout(function(){
+				var soundHum = document.getElementById("soundIn");
+				soundHum.volume = 0.2;
+				soundHum.play();
+			},1000);
+		}
+		
+		function turnOff(){
+			var sabre = document.getElementById("box_neon");
+			sabre.className = "neon";
+			
+			var myB = document.getElementById("saberHandle");
+			myB.removeEventListener("click",turnOff);
+			myB.addEventListener("click",turnOn);
+			
+			var soundHum = document.getElementById("soundIn");
+			soundHum.pause();
+			
+			var sound = document.getElementById("soundOff");
+			sound.play();
+			
+		}
+		
+		var myB = document.getElementById("saberHandle");
+			myB.addEventListener("click",turnOn);
+	</script>
+</body>
+</html>

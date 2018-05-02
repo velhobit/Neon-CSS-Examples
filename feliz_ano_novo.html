@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Neon Example CSS - By Rodrigo Portillo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+</head>
+<!--Example created by Rodrigo Portillo - 2017 https://velhobit.com.br-->
+<body>
+	<center><button id="lightsOn">Turn Lights On</button> Created by <a href="https://velhobit.com.br">https://velhobit.com.br</a></center>
+	<div class="area_neon">
+		<center>
+			<h1 id="texto_neon" class="neon">10</h1>
+		</center>
+	</div>
+	<style>
+		body{
+			font-family: 'Pacifico', cursive;
+			background-color: #0F0F0F;
+			color: white;
+		}
+		a{
+			color: #00F3FF;
+		}
+		button{
+			border-radius: 5px;
+			border: 1px solid white;
+			padding: 5px 10px;
+			background-color: transparent;
+			text-align: center;
+			margin-right: 2px;
+			color: white;
+			cursor: pointer;
+		}
+		button:focus{
+			outline: none;
+		}
+		
+		.area_neon{
+			padding: 20px;
+		}
+		
+		.area_neon h1.neon{
+			font-weight: normal;
+			font-size: 12em;
+			filter: blur(0);
+			-webkit-text-stroke: 1px rgba(255,255,255,0.1);
+			color: rgba(255,255,255,0.1);
+			text-shadow: -5px 5px 5px black;
+  			-webkit-background-clip: text;
+			transition: all ease .3s;
+			line-height: 173px;
+		}
+		
+		.area_neon h1.neon.on{
+			filter: blur(1px);
+			color: white;
+			-webkit-text-stroke: 1px #C0FEFF;
+			text-shadow: 0 0 5px #C0FEFF, 0 0 200px #C0FEFF;
+			-webkit-background-clip: none;
+		}
+		
+		.area_neon h1.neon.color_9{
+			-webkit-text-stroke: 1px #00FF1D;
+			text-shadow: 0 0 5px #00FF1D, 0 0 200px #00FF1D;
+		}
+		.area_neon h1.neon.color_8{
+			-webkit-text-stroke: 1px #99FF00;
+			text-shadow: 0 0 5px #99FF00, 0 0 200px #99FF00;
+		}
+		.area_neon h1.neon.color_7{
+			-webkit-text-stroke: 1px #FFFD00;
+			text-shadow: 0 0 5px #FFFD00, 0 0 200px #FFFD00;
+		}
+		.area_neon h1.neon.color_6{
+			-webkit-text-stroke: 1px #FF9600;
+			text-shadow: 0 0 5px #FFC600, 0 0 200px #FF9600;
+		}
+		.area_neon h1.neon.color_5{
+			-webkit-text-stroke: 1px #FF0000;
+			text-shadow: 0 0 5px #FF0000, 0 0 200px #FF0000;
+		}
+		.area_neon h1.neon.color_4{
+			-webkit-text-stroke: 1px #FF00A6;
+			text-shadow: 0 0 5px #FF00A6, 0 0 200px #FF00A6;
+		}
+		.area_neon h1.neon.color_3{
+			-webkit-text-stroke: 1px #9100FF;
+			text-shadow: 0 0 5px #9100FF, 0 0 200px #9100FF;
+		}
+		.area_neon h1.neon.color_2{
+			-webkit-text-stroke: 1px #0044FF;
+			text-shadow: 0 0 5px #0044FF, 0 0 200px #0044FF;
+		}
+		.area_neon h1.neon.color_1{
+			-webkit-text-stroke: 1px #00C3FF;
+			text-shadow: 0 0 5px #00C3FF, 0 0 200px #00C3FF;
+		}
+		
+		@media only screen and (min-device-width: 320px) and (max-device-width: 640px) and (-webkit-min-device-pixel-ratio: 1),
+screen and (max-width: 600px) {
+			.area_neon h1.neon{
+				font-size: 3em;
+			}
+		}
+	</style>
+	
+	<script>
+		function turnOn(){
+			var texto = document.getElementById("texto_neon");
+
+			var cd=9;
+			var countdown = setInterval(function(){
+				if(cd == 0){
+					texto.className = "neon on";
+					texto.innerHTML = "Happy New Year!";
+					clearInterval(countdown);
+				}else{
+					texto.className = "neon on color_"+cd;
+					texto.innerHTML = cd;
+				}
+				cd--;
+			},1000);
+		}
+		
+		var myB = document.getElementById("lightsOn");
+		myB.addEventListener("click",turnOn);
+	</script>
+</body>
+</html>
